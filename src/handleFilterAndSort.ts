@@ -1,12 +1,12 @@
-import type { SelectQueryBuilder, ObjectLiteral } from 'typeorm';
-import type { GridFilterModel, GridSortModel } from '@mui/x-data-grid';
-import { Brackets } from 'typeorm';
-import { makeWhere } from './makeWhere';
-import { fieldFormat, invertTableMap } from './helpers';
+import type { SelectQueryBuilder, ObjectLiteral } from "typeorm";
+import type { GridFilterModel, GridSortModel } from "@mui/x-data-grid";
+import { Brackets } from "typeorm";
+import { makeWhere } from "./makeWhere";
+import { fieldFormat, invertTableMap } from "./helpers";
 import {
   handleQueryStringParameters,
   type QueryStringParameters,
-} from './handleQueryStringParameters';
+} from "./handleQueryStringParameters";
 
 type HandleFilterAndSortProps = {
   qb: SelectQueryBuilder<ObjectLiteral>;
@@ -20,17 +20,17 @@ type HandleFilterAndSortProps = {
 
 type HandleQueryProps = Omit<
   HandleFilterAndSortProps,
-  'filterModel' | 'sortModel'
+  "filterModel" | "sortModel"
 > & {
   queryStringParameters: QueryStringParameters;
 };
 
 export function handleFilterModel(
-  qb: HandleFilterAndSortProps['qb'],
+  qb: HandleFilterAndSortProps["qb"],
   filterModel: GridFilterModel,
   tableNameMap: ReturnType<typeof invertTableMap>,
-  tableDefault: HandleFilterAndSortProps['tableDefault'],
-  quickFilterFields?: HandleFilterAndSortProps['quickFilterFields']
+  tableDefault: HandleFilterAndSortProps["tableDefault"],
+  quickFilterFields?: HandleFilterAndSortProps["quickFilterFields"]
 ) {
   const whereStatements: string[] = [];
   const parameters: ObjectLiteral = {};
@@ -53,7 +53,7 @@ export function handleFilterModel(
     qb.andWhere(
       new Brackets((qb2) => {
         qb2.where(
-          whereStatements.join(filterModel.logicOperator ?? ' OR '),
+          whereStatements.join(filterModel.logicOperator ?? " OR "),
           parameters
         );
       })
@@ -65,8 +65,8 @@ export function handleFilterModel(
       const params = { [parameterName]: value };
       const whereStatement = quickFilterFields
         .map((field) => `${field} ILIKE '%' || :${parameterName} || '%'`)
-        .join(' OR ');
-      if (filterModel.logicOperator === 'or' && index > 0) {
+        .join(" OR ");
+      if (filterModel.logicOperator === "or" && index > 0) {
         qb.orWhere(whereStatement, params);
       } else {
         qb.andWhere(whereStatement, params);
@@ -76,17 +76,17 @@ export function handleFilterModel(
 }
 
 export function handleSortModel(
-  qb: HandleFilterAndSortProps['qb'],
+  qb: HandleFilterAndSortProps["qb"],
   sortModel: GridSortModel,
   tableNameMap: ReturnType<typeof invertTableMap>,
-  tableDefault: HandleFilterAndSortProps['tableDefault'],
-  nullsFirst: HandleFilterAndSortProps['nullsFirst']
+  tableDefault: HandleFilterAndSortProps["tableDefault"],
+  nullsFirst: HandleFilterAndSortProps["nullsFirst"]
 ) {
   sortModel.forEach(({ field, sort }) =>
     qb.addOrderBy(
       fieldFormat(field, tableNameMap[field] || tableDefault),
-      sort?.toUpperCase() as 'ASC' | 'DESC',
-      nullsFirst ? 'NULLS FIRST' : 'NULLS LAST'
+      sort?.toUpperCase() as "ASC" | "DESC",
+      nullsFirst ? "NULLS FIRST" : "NULLS LAST"
     )
   );
 }

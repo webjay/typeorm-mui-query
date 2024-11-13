@@ -1,5 +1,5 @@
-import type { GridFilterItem } from '@mui/x-data-grid';
-import { fieldFormat, cast } from './helpers';
+import type { GridFilterItem } from "@mui/x-data-grid";
+import { fieldFormat, cast } from "./helpers";
 
 type MakeWhereProps = {
   tableName?: string;
@@ -12,7 +12,7 @@ function handleNoValue(
   operator: string,
   parameterName: string,
   value?: string | string[],
-  condition: 'IS NULL' | 'IS NOT NULL' = 'IS NULL'
+  condition: "IS NULL" | "IS NOT NULL" = "IS NULL"
 ) {
   if (!value) {
     return `${fieldFormatted} ${condition}`;
@@ -27,78 +27,78 @@ export function makeWhere({
 }: MakeWhereProps): string | false {
   switch (operator) {
     // number
-    case '=':
-    case '!=':
-    case '>':
-    case '>=':
-    case '<':
-    case '<=':
+    case "=":
+    case "!=":
+    case ">":
+    case ">=":
+    case "<":
+    case "<=":
       if (!value) return false;
       return `${fieldFormat(
         field,
         tableName
       )} ${operator} :${parameterName}::int`;
     // common
-    case 'contains':
+    case "contains":
       if (!value) return false;
       return `${fieldFormat(
         field,
         tableName
       )} ILIKE '%' || :${parameterName} || '%'`;
-    case 'equals':
+    case "equals":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} = :${parameterName}`;
-    case 'startsWith':
+    case "startsWith":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} ILIKE :${parameterName} || '%'`;
-    case 'endsWith':
+    case "endsWith":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} ILIKE '%' || :${parameterName}`;
-    case 'isEmpty':
+    case "isEmpty":
       return `${fieldFormat(field, tableName)} IS NULL`;
-    case 'isNotEmpty':
+    case "isNotEmpty":
       return `${fieldFormat(field, tableName)} IS NOT NULL`;
-    case 'isAnyOf':
+    case "isAnyOf":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} IN(:...${parameterName})`;
     // date | selectable
-    case 'is':
+    case "is":
       return handleNoValue(
         fieldFormat(field, tableName),
-        '=',
+        "=",
         parameterName,
         value
       );
-    case 'not':
+    case "not":
       return handleNoValue(
         fieldFormat(field, tableName),
-        '!=',
+        "!=",
         parameterName,
         value,
-        'IS NOT NULL'
+        "IS NOT NULL"
       );
-    case 'after':
+    case "after":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} > :${parameterName}${cast(
         value
       )}`;
-    case 'onOrAfter':
+    case "onOrAfter":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} >= :${parameterName}${cast(
         value
       )}`;
-    case 'before':
+    case "before":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} < :${parameterName}${cast(
         value
       )}`;
-    case 'onOrBefore':
+    case "onOrBefore":
       if (!value) return false;
       return `${fieldFormat(field, tableName)} <= :${parameterName}${cast(
         value
       )}`;
     default:
-      console.warn('Unknown operator: %s', operator);
+      console.warn("Unknown operator: %s", operator);
       return `${fieldFormat(field, tableName)} ${operator} :${parameterName}`;
   }
 }

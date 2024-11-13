@@ -1,4 +1,4 @@
-import type { GridFilterModel, GridSortModel } from '@mui/x-data-grid';
+import type { GridFilterModel, GridSortModel } from "@mui/x-data-grid";
 
 export type QueryStringParameters = Record<string, unknown> | undefined | null;
 
@@ -12,13 +12,13 @@ type Result = {
 };
 
 type PaginationParameters = (string &
-  keyof Omit<Result, 'filterModel' | 'sortModel'>)[];
+  keyof Omit<Result, "filterModel" | "sortModel">)[];
 
 const paginationParameters: PaginationParameters = [
-  'limit',
-  'offset',
-  'take',
-  'skip',
+  "limit",
+  "offset",
+  "take",
+  "skip",
 ];
 
 const initParameters = {
@@ -41,13 +41,13 @@ export function handleQueryStringParameters(
   });
   if (
     queryStringParameters.sortModel !== undefined &&
-    typeof queryStringParameters.sortModel === 'string'
+    typeof queryStringParameters.sortModel === "string"
   ) {
     definedParameters.sortModel = JSON.parse(queryStringParameters.sortModel);
   }
   if (
     queryStringParameters.filterModel !== undefined &&
-    typeof queryStringParameters.filterModel === 'string'
+    typeof queryStringParameters.filterModel === "string"
   ) {
     definedParameters.filterModel = JSON.parse(
       queryStringParameters.filterModel
