@@ -123,7 +123,7 @@ export function handleQuery(props: HandleQueryProps) {
     filterModel,
     sortModel,
   });
-  if (start && end) {
+  if (start !== undefined && end !== undefined) {
     props.qb.take(end + 1).skip(start);
   } else {
     props.qb.take(take).skip(skip).limit(limit).offset(offset);
