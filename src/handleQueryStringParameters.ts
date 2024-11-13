@@ -1,12 +1,17 @@
 import type { GridFilterModel, GridSortModel } from "@mui/x-data-grid";
 
-export type QueryStringParameters = Record<string, unknown> | undefined | null;
+export type QueryStringParameters =
+  | Record<string, string | undefined>
+  | undefined
+  | null;
 
 type Result = {
   limit?: number;
   offset?: number;
   take?: number;
   skip?: number;
+  start?: number;
+  end?: number;
   filterModel?: GridFilterModel;
   sortModel?: GridSortModel;
 };
@@ -19,6 +24,8 @@ const paginationParameters: PaginationParameters = [
   "offset",
   "take",
   "skip",
+  "start",
+  "end",
 ];
 
 const initParameters = {

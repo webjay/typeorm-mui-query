@@ -116,12 +116,16 @@ export function handleFilterAndSort({
 }
 
 export function handleQuery(props: HandleQueryProps) {
-  const { filterModel, sortModel, take, skip, limit, offset } =
+  const { filterModel, sortModel, take, skip, limit, offset, start, end } =
     handleQueryStringParameters(props.queryStringParameters);
   handleFilterAndSort({
     ...props,
     filterModel,
     sortModel,
   });
-  props.qb.take(take).skip(skip).limit(limit).offset(offset);
+  if (start && end) {
+    props.qb.take(end + 1).skip(start);
+  } else {
+    props.qb.take(take).skip(skip).limit(limit).offset(offset);
+  }
 }
