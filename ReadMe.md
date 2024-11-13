@@ -1,4 +1,4 @@
-# MUI TypeORM querybuilder
+# MUI TypeORM QueryBuilder
 
 If you use [TypeORM](https://typeorm.io/) and [MUI](https://mui.com/) [Data Grid](https://mui.com/x/react-data-grid/) [server-side filter](https://mui.com/x/react-data-grid/filtering/server-side/) or [server-side sorting](https://mui.com/x/react-data-grid/sorting/#server-side-sorting) this project can be helpful.
 

@@ -1,12 +1,12 @@
 {
   "name": "typeorm-mui-query",
-  "version": "1.2.6",
-  "description": "MUI TypeORM querybuilder",
+  "version": "1.3.0",
+  "description": "MUI TypeORM QueryBuilder",
   "keywords": [
     "MUI",
     "TypeORM"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "main": "output/main.js",
   "module": "output/main.mjs",
   "types": "output/main.d.ts",
@@ -22,23 +22,23 @@
     "test": "ts-mocha -p test/tsconfig.json test/*.ts"
   },
   "devDependencies": {
-    "@mui/x-data-grid": "6.17.0",
+    "@mui/x-data-grid": "7.22.2",
     "@rollup/plugin-terser": "0.4.4",
-    "@rollup/plugin-typescript": "11.1.5",
-    "@tsconfig/node18": "18.2.2",
-    "@types/aws-lambda": "8.10.125",
-    "@types/mocha": "10.0.3",
-    "@typescript-eslint/eslint-plugin": "6.9.1",
-    "@typescript-eslint/parser": "6.9.1",
-    "eslint": "8.52.0",
+    "@rollup/plugin-typescript": "12.1.1",
+    "@tsconfig/node20": "20.1.4",
+    "@types/aws-lambda": "8.10.145",
+    "@types/mocha": "10.0.9",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/parser": "6.21.0",
+    "eslint": "8.57.1",
     "eslint-config-prettier": "8.10.0",
     "eslint-plugin-prettier": "4.2.1",
-    "mocha": "10.2.0",
+    "mocha": "10.8.2",
     "prettier": "2.8.8",
-    "rollup": "4.1.5",
-    "sqlite3": "5.1.6",
+    "rollup": "4.26.0",
+    "sqlite3": "5.1.7",
     "ts-mocha": "10.0.0",
-    "typeorm": "0.3.17",
+    "typeorm": "0.3.20",
     "typescript": "5.2.2"
   },
   "peerDependencies": {
@@ -46,10 +46,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SpaceInvaderTech/typeorm-mui-query.git"
+    "url": "git+https://github.com/webjay/typeorm-mui-query.git"
   },
   "bugs": {
-    "url": "https://github.com/SpaceInvaderTech/typeorm-mui-query/issues"
-  },
-  "homepage": "https://github.com/SpaceInvaderTech/typeorm-mui-query#readme"
+    "url": "https://github.com/webjay/typeorm-mui-query/issues"
+  }
 }
