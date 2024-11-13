@@ -1,16 +1,16 @@
-import typescript from '@rollup/plugin-typescript';
-import terser from '@rollup/plugin-terser';
+import typescript from "@rollup/plugin-typescript";
+import terser from "@rollup/plugin-terser";
 
-const dir = 'output';
+const dir = "output";
 
 /** @type {import('rollup').RollupOptions} */
 export default {
-  input: 'src/main.ts',
-  external: ['typeorm'],
+  input: "src/main.ts",
+  external: ["typeorm"],
   output: [
     {
       dir,
-      format: 'commonjs',
+      format: "commonjs",
     },
     {
       file: `${dir}/main.mjs`,
